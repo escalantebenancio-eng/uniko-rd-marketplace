@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductosIndexRouteImport } from './routes/productos.index'
+import { Route as ProductosProductoIdRouteImport } from './routes/productos.$productoId'
+import { Route as ServiciosIndexRouteImport } from './routes/servicios.index'
+import { Route as ServiciosServicioIdRouteImport } from './routes/servicios.$servicioId'
+import { Route as TiendasIndexRouteImport } from './routes/tiendas.index'
+import { Route as TiendasTiendaIdRouteImport } from './routes/tiendas.$tiendaId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductosIndexRoute = ProductosIndexRouteImport.update({
+  id: '/productos/',
+  path: '/productos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductosProductoIdRoute = ProductosProductoIdRouteImport.update({
+  id: '/productos/$productoId',
+  path: '/productos/$productoId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosIndexRoute = ServiciosIndexRouteImport.update({
+  id: '/servicios/',
+  path: '/servicios/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosServicioIdRoute = ServiciosServicioIdRouteImport.update({
+  id: '/servicios/$servicioId',
+  path: '/servicios/$servicioId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TiendasIndexRoute = TiendasIndexRouteImport.update({
+  id: '/tiendas/',
+  path: '/tiendas/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TiendasTiendaIdRoute = TiendasTiendaIdRouteImport.update({
+  id: '/tiendas/$tiendaId',
+  path: '/tiendas/$tiendaId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/productos/$productoId': typeof ProductosProductoIdRoute
+  '/servicios/$servicioId': typeof ServiciosServicioIdRoute
+  '/tiendas/$tiendaId': typeof TiendasTiendaIdRoute
+  '/productos/': typeof ProductosIndexRoute
+  '/servicios/': typeof ServiciosIndexRoute
+  '/tiendas/': typeof TiendasIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/productos/$productoId': typeof ProductosProductoIdRoute
+  '/servicios/$servicioId': typeof ServiciosServicioIdRoute
+  '/tiendas/$tiendaId': typeof TiendasTiendaIdRoute
+  '/productos': typeof ProductosIndexRoute
+  '/servicios': typeof ServiciosIndexRoute
+  '/tiendas': typeof TiendasIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/productos/$productoId': typeof ProductosProductoIdRoute
+  '/servicios/$servicioId': typeof ServiciosServicioIdRoute
+  '/tiendas/$tiendaId': typeof TiendasTiendaIdRoute
+  '/productos/': typeof ProductosIndexRoute
+  '/servicios/': typeof ServiciosIndexRoute
+  '/tiendas/': typeof TiendasIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/productos/$productoId'
+    | '/servicios/$servicioId'
+    | '/tiendas/$tiendaId'
+    | '/productos/'
+    | '/servicios/'
+    | '/tiendas/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/productos/$productoId'
+    | '/servicios/$servicioId'
+    | '/tiendas/$tiendaId'
+    | '/productos'
+    | '/servicios'
+    | '/tiendas'
+  id:
+    | '__root__'
+    | '/'
+    | '/productos/$productoId'
+    | '/servicios/$servicioId'
+    | '/tiendas/$tiendaId'
+    | '/productos/'
+    | '/servicios/'
+    | '/tiendas/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProductosProductoIdRoute: typeof ProductosProductoIdRoute
+  ServiciosServicioIdRoute: typeof ServiciosServicioIdRoute
+  TiendasTiendaIdRoute: typeof TiendasTiendaIdRoute
+  ProductosIndexRoute: typeof ProductosIndexRoute
+  ServiciosIndexRoute: typeof ServiciosIndexRoute
+  TiendasIndexRoute: typeof TiendasIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/productos/': {
+      id: '/productos/'
+      path: '/productos'
+      fullPath: '/productos/'
+      preLoaderRoute: typeof ProductosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/productos/$productoId': {
+      id: '/productos/$productoId'
+      path: '/productos/$productoId'
+      fullPath: '/productos/$productoId'
+      preLoaderRoute: typeof ProductosProductoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/': {
+      id: '/servicios/'
+      path: '/servicios'
+      fullPath: '/servicios/'
+      preLoaderRoute: typeof ServiciosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/$servicioId': {
+      id: '/servicios/$servicioId'
+      path: '/servicios/$servicioId'
+      fullPath: '/servicios/$servicioId'
+      preLoaderRoute: typeof ServiciosServicioIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tiendas/': {
+      id: '/tiendas/'
+      path: '/tiendas'
+      fullPath: '/tiendas/'
+      preLoaderRoute: typeof TiendasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tiendas/$tiendaId': {
+      id: '/tiendas/$tiendaId'
+      path: '/tiendas/$tiendaId'
+      fullPath: '/tiendas/$tiendaId'
+      preLoaderRoute: typeof TiendasTiendaIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProductosProductoIdRoute: ProductosProductoIdRoute,
+  ServiciosServicioIdRoute: ServiciosServicioIdRoute,
+  TiendasTiendaIdRoute: TiendasTiendaIdRoute,
+  ProductosIndexRoute: ProductosIndexRoute,
+  ServiciosIndexRoute: ServiciosIndexRoute,
+  TiendasIndexRoute: TiendasIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
